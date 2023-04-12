@@ -1,23 +1,22 @@
 ﻿using System;
-using System.Reflection;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Palindrome Chekcher");
+        Console.WriteLine("Palindrome Checker");
         Console.WriteLine("Enter a word: ");
         string inputWord = Console.ReadLine();
 
-        string[] words = inputWord.Split(' ');
+        string[] words = inputWord.Split(new char[] { ',', ' ', '-'}, StringSplitOptions.RemoveEmptyEntries);
 
         foreach (string word in words) 
         {
             string cleanWord = CleanWord(word);
             bool isPalindrome = IsPalindrome(cleanWord);
-            Console.WriteLine(word + " " + (isPalindrome ? "Is Palindrome." : "Is not Palindrome."));
-            Console.ReadKey();
+            Console.WriteLine($"{word} - {(isPalindrome ? "Is Palindrome." : "Is not Palindrome.")}");
         }
+        Console.ReadKey();
     }
 
     static string CleanWord(string word)
@@ -28,7 +27,11 @@ class Program
         {
             if (Char.IsLetter(c))
             {
-                cleanWord += Char.ToLower(c);
+           
+                {
+                    cleanWord += Char.ToLower(c);
+                }
+                
             }
         }
 
@@ -53,4 +56,5 @@ class Program
         
         return true;
     }
+    
 }
